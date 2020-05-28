@@ -1,0 +1,89 @@
+@import url(/home/akash/Desktop/MacQuiz/dashboard/src/assets/css/bootstrap.min.css);
+@import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.1/collection/components/icon/icon.min.css");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+body,
+input,
+textarea,
+select,
+button {
+  font-family: 'Lato', sans-serif;
+}
+
+h4,
+h5,
+.h4,
+.h5,
+.bold {
+  font-weight: 700;
+}
+
+h4,
+.h4 {
+  font-size: 22px;
+}
+
+a,
+p.bold {
+  color: #0E3C65;
+}
+
+.btn-sm {
+  border-radius: 16px;
+  padding: 4px 16px;
+}
+
+.btn-primary {
+  background-color: #0E3C65;
+  border-color: #0E3C65;
+}
+
+.btn-danger {
+  background-color: #B31F31;
+  border-color: #B31F31;
+}
+
+.btn-link {
+  color: #0E3C65;
+}
+
+.text-danger {
+  color: #B31F31;
+}
+
+.text-primary {
+  color: #0E3C65 !important;
+}
+
+img.logo {
+  height: 42px;
+}
+
+@media screen and (max-width: 767px) {
+  img.logo {
+    height: 32px;
+  }
+}
+
+.cityscape {
+  min-height: 80vh;
+  background-image: url("../img/cityscape.png");
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+@media screen and (min-width: 768px) {
+  .cityscape {
+    background-size: auto 90%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cityscape {
+    background-size: cover;
+  }
+}
+
+footer p {
+  line-height: 120%;
+}
+/*# sourceMappingURL=style.css.map */

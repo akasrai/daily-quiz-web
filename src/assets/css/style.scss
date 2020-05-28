@@ -1,0 +1,83 @@
+@import 'bootstrap.min.css';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.1/collection/components/icon/icon.min.css');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+@import '_variable';
+
+body,
+input,
+textarea,
+select,
+button {
+  font-family: 'Lato', sans-serif;
+}
+
+h4,
+h5,
+.h4,
+.h5,
+.bold {
+  font-weight: 700;
+}
+
+h4,
+.h4 {
+  font-size: $ruler-lead;
+}
+
+a,
+p.bold {
+  color: $color-blue;
+}
+
+.btn {
+  &-sm {
+    border-radius: $ruler-base;
+    padding: $ruler-ty $ruler-base;
+  }
+  &-primary {
+    background-color: $color-blue;
+    border-color: $color-blue;
+  }
+  &-danger {
+    background-color: $color-red;
+    border-color: $color-red;
+  }
+  &-link {
+    color: $color-blue;
+  }
+}
+
+.text {
+  &-danger {
+    color: $color-red;
+  }
+  &-primary {
+    color: $color-blue !important;
+  }
+}
+
+img.logo {
+  height: 42px;
+  @media screen and (max-width: 767px) {
+    height: 32px;
+  }
+}
+
+.cityscape {
+  min-height: 80vh;
+  background-image: url('../img/cityscape.png');
+  background-position: center;
+  background-repeat: repeat-x;
+
+  @media screen and (min-width: 768px) {
+    background-size: auto 90%;
+  }
+
+  @media screen and (max-width: 767px) {
+    background-size: cover;
+  }
+}
+
+footer p {
+  line-height: 120%;
+}
