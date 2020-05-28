@@ -8,7 +8,7 @@ import PageNotFound from 'layout/404.layout';
 import { ReloadRoute } from 'common/route/reload-route';
 
 const AuthenticatedRoute = (props: any) => {
-  const isSignedIn = false;
+  const isSignedIn = true;
 
   return isSignedIn ? <Route {...props} /> : <ReloadRoute to={ROUTE.HOME} />;
 };
@@ -16,7 +16,7 @@ const AuthenticatedRoute = (props: any) => {
 const PrivateRoute = withRouter(AuthenticatedRoute);
 
 const NonAuthenticatedRoute = (props: any) => {
-  const isSignedIn = false;
+  const isSignedIn = true;
 
   return isSignedIn ? <Redirect to={ROUTE.DASHBOARD} /> : <Route {...props} />;
 };

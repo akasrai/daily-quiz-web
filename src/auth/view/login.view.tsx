@@ -1,5 +1,4 @@
 import React from 'react';
-import NonAuthenticatedLayout from 'layout/non-authenticated.layout';
 
 const LoginForm = () => {
   return (
@@ -53,11 +52,10 @@ const LoginView = () => {
     <div className="login-layout">
       <div className="left-bubble"></div>
       <div className="right-bubble"></div>
-      <div className="middle-bubble"></div>
       <div className="wave one"></div>
       <div className="wave two"></div>
       <div className="wave three"></div>
-      <div className="row justify-content-center m-0">
+      <div className="row justify-content-center m-4">
         <div className="col-md-4 p-5 rounded bg-white login-form">
           <h3 className="text-primary mb-4">Welcome back :)</h3>
           <LoginForm />
