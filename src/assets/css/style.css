@@ -1,4 +1,4 @@
-@import url(/home/akash/Desktop/MacQuiz/dashboard/src/assets/css/bootstrap.min.css);
+@import url("bootstrap.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.1/collection/components/icon/icon.min.css");
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 body,
@@ -64,26 +64,103 @@ img.logo {
   }
 }
 
-.cityscape {
-  min-height: 80vh;
-  background-image: url("../img/cityscape.png");
-  background-position: center;
-  background-repeat: repeat-x;
+.login-layout {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 100px;
+  background-color: #f6f5f8;
 }
 
-@media screen and (min-width: 768px) {
-  .cityscape {
-    background-size: auto 90%;
-  }
+.login-layout .right-bubble {
+  right: -300px;
+  width: 900px;
+  height: 900px;
+  margin-top: -40px;
+  position: absolute;
+  border-radius: 100%;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#0e3c65), to(#748abd));
+  background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
 }
 
-@media screen and (max-width: 767px) {
-  .cityscape {
-    background-size: cover;
-  }
+.login-layout .left-bubble {
+  top: -400px;
+  left: -350px;
+  width: 800px;
+  height: 800px;
+  position: absolute;
+  border-radius: 100%;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#0e3c65), to(#748abd));
+  background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
 }
 
-footer p {
-  line-height: 120%;
+.login-layout .middle-bubble {
+  top: 200px;
+  left: 200px;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  border-radius: 100%;
+  background-image: -webkit-gradient(linear, left top, right bottom, from(#0e3c65), to(#748abd));
+  background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
+}
+
+.login-layout div .login-form {
+  margin-top: 150px;
+  -webkit-box-shadow: 0px 0px 50px #2048738c;
+          box-shadow: 0px 0px 50px #2048738c;
+}
+
+.btn-blue {
+  background-color: #3c8dbc !important;
+  border: #3c8dbc;
+  color: white;
+}
+
+.btn-blue:not(:disabled):not(.disabled).active,
+.btn-blue:not(:disabled):not(.disabled):active,
+.show > .btn-blue.dropdown-toggle {
+  -webkit-box-shadow: 0 0 0 0.2rem #9aceec !important;
+          box-shadow: 0 0 0 0.2rem #9aceec !important;
+}
+
+.btn-blue.focus,
+.btn-blue:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem #2e7aa7;
+          box-shadow: 0 0 0 0.2rem #2e7aa7;
+}
+
+.btn-outline-blue {
+  color: #3c8dbc;
+  background-color: transparent;
+  background-image: none;
+  border-color: #3c8dbc;
+}
+
+.btn-outline-blue:hover {
+  color: #fff;
+  background-color: #3c8dbc;
+  border-color: #3c8dbc;
+}
+
+.btn-outline-blue:not(:disabled):not(.disabled).active,
+.btn-outline-blue:not(:disabled):not(.disabled):active,
+.show > .btn-outline-blue.dropdown-toggle {
+  color: #fff;
+  background-color: #3c8dbc;
+  border-color: #3c8dbc;
+}
+
+.btn-outline-blue.focus,
+.btn-outline-blue:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem #3c8dbc;
+          box-shadow: 0 0 0 0.2rem #3c8dbc;
+}
+
+.btn-outline-blue:not(:disabled):not(.disabled).active:focus,
+.btn-outline-blue:not(:disabled):not(.disabled):active:focus,
+.show > .btn-outline-blue.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem #3c8dbc;
+          box-shadow: 0 0 0 0.2rem #3c8dbc;
 }
 /*# sourceMappingURL=style.css.map */
