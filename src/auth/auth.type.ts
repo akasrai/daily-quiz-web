@@ -7,7 +7,6 @@ export interface User {
 export interface AuthState {
   user: User;
   token: string;
-  provider: string;
   roles: string[];
   isSigningIn: boolean;
   isAuthenticated: boolean;
@@ -17,4 +16,9 @@ export interface AuthState {
 export interface Action {
   payload?: any;
   type: string;
+}
+
+export interface Credentials {
+  email: string;
+  password: string;
 }

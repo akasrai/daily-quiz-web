@@ -1,7 +1,9 @@
 import { AuthState, Action } from 'auth/auth.type';
 import { updateObject } from 'helper/common-helper';
+import { securedLS } from 'helper/local-storage-helper';
 
 const AUTH = 'AUTH';
+export const AUTH_LS_KEY = '_lst';
 export const SIGN_OUT = `${AUTH}_SIGN_OUT`;
 export const RESTORE_AUTH = 'RESTORE_AUTH';
 export const SIGN_IN_ERROR = `${AUTH}_SIGN_IN_ERROR`;
@@ -17,7 +19,6 @@ export const initialState: AuthState = {
   token: '',
   roles: [],
   isSigningIn: false,
-  provider: 'Google',
   isAuthenticated: false,
   setCurrentAuth: () => null,
 };
@@ -33,6 +34,8 @@ export const reducer = (
       });
 
     case SIGN_IN_SUCCESS:
+      securedLS.set(AUTH_LS_KEY, action.payload);
+
       return updateObject(state, {
         isSigningIn: false,
         isAuthenticated: true,
@@ -47,6 +50,8 @@ export const reducer = (
       });
 
     case SIGN_OUT:
+      securedLS.clear(AUTH_LS_KEY);
+
       return updateObject(state, {
         ...initialState,
       });

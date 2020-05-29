@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Router, Switch, Route, Redirect, withRouter } from 'react-router-dom';
 
 import { ROUTE } from './app.route-path';
 import { history } from 'app/app.history';
-import LoginView from 'auth/view/login.view';
-import PageNotFound from 'layout/404.layout';
-import { ReloadRoute } from 'common/route/reload-route';
+import SigninView from 'auth/view/signin.view';
+import PageNotFound from 'ui/layout/404.layout';
+import { ReloadRoute } from 'ui/route/reload-route';
+import { AuthContext } from 'auth/auth.context';
+import DashboardView from 'dashboard/view/dashboard.view';
 
 const AuthenticatedRoute = (props: any) => {
-  const isSignedIn = true;
+  const { isAuthenticated } = useContext(AuthContext);
 
-  return isSignedIn ? <Route {...props} /> : <ReloadRoute to={ROUTE.HOME} />;
+  return isAuthenticated ? (
+    <Route {...props} />
+  ) : (
+    <ReloadRoute to={ROUTE.HOME} />
+  );
 };
 
 const PrivateRoute = withRouter(AuthenticatedRoute);
 
 const NonAuthenticatedRoute = (props: any) => {
-  const isSignedIn = true;
+  const { isAuthenticated } = useContext(AuthContext);
 
-  return isSignedIn ? <Redirect to={ROUTE.DASHBOARD} /> : <Route {...props} />;
+  return isAuthenticated ? (
+    <Redirect to={ROUTE.DASHBOARD} />
+  ) : (
+    <Route {...props} />
+  );
 };
 
 const PublicRoute = withRouter(NonAuthenticatedRoute);
@@ -26,8 +36,9 @@ const PublicRoute = withRouter(NonAuthenticatedRoute);
 const AppRoutes = () => (
   <Router history={history}>
     <Switch>
-      <PublicRoute exact path={ROUTE.HOME} component={LoginView} />
-      <PrivateRoute exact path={ROUTE.DASHBOARD} component={LoginView} />
+      <PublicRoute exact path={ROUTE.HOME} component={SigninView} />
+      <PublicRoute exact path={ROUTE.SIGNIN} component={SigninView} />
+      <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashboardView} />
       <Route component={PageNotFound} />
     </Switch>
   </Router>

@@ -1,5 +1,5 @@
 @import url("bootstrap.min.css");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.1/collection/components/icon/icon.min.css");
+@import url("https://unpkg.com/ionicons@4.4.4/dist/css/ionicons.min.css");
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 body,
 input,
