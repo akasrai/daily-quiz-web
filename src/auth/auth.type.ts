@@ -10,6 +10,7 @@ export interface AuthState {
   roles: string[];
   isSigningIn: boolean;
   isAuthenticated: boolean;
+  setCurrentUser: (currentUser: User) => void;
   setCurrentAuth: (currentAuth: AuthState) => void;
 }
 

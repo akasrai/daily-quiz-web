@@ -1,25 +1,32 @@
 import React, { useContext, useReducer, useState, useEffect } from 'react';
 
 import * as auth from 'auth/auth.state';
+import { Action } from 'auth/auth.type';
+import { signIn } from 'api/resource.api';
 import { ApiResponse } from 'api/api.type';
 import { AuthContext } from 'auth/auth.context';
-import { Action, Credentials } from 'auth/auth.type';
-import { signIn, getCurrentUser } from 'api/resource.api';
 import { securedLS } from 'helper/local-storage-helper';
 
 import { Input } from 'ui/form/input';
 import { Button } from 'ui/form/button';
 import { ErrorAlert } from 'ui/form/alert';
+import BubbleBackground from 'ui/layout/bubble-background.layout';
 
-const handleSignIn = async (event: any, dispatch: (props: any) => void) => {
+const handleSignIn = async (
+  event: any,
+  dispatch: (props: any) => void,
+  setSignInError: (error: string) => void
+) => {
   event.preventDefault();
   dispatch({ type: auth.SIGN_IN_PENDING });
+
   const { data, error } = await signIn({
     email: event.target[0].value,
     password: event.target[1].value,
   });
 
   if (error) {
+    setSignInError(error.message);
     return dispatch({ type: auth.SIGN_IN_ERROR });
   }
 
@@ -42,6 +49,7 @@ const restoreAuthentication = (dispatch: (props: Action) => void) => {
 
 const SigninForm = () => {
   const [checkAuth, setCheckAuth] = useState<boolean>(true);
+  const [signInError, setSignInError] = useState<String>('');
   const { setCurrentAuth, isSigningIn } = useContext(AuthContext);
   const [authState, dispatch] = useReducer(auth.reducer, auth.initialState);
 
@@ -57,22 +65,23 @@ const SigninForm = () => {
   return (
     <form
       className="col-12 p-md-3 p-0"
-      onSubmit={(e) => handleSignIn(e, dispatch)}
+      onChange={() => setSignInError('')}
+      onSubmit={(e) => handleSignIn(e, dispatch, setSignInError)}
     >
-      <ErrorAlert show={true} message="Fuck you" />
+      <ErrorAlert message={signInError} />
       <Input
         type="email"
         name="email"
         required={true}
         placeholder="Email"
-        className={`${false ? 'is-invalid ' : ''}form-control`}
+        className={`${signInError ? 'is-invalid ' : ''}form-control`}
       />
       <Input
         type="password"
         name="password"
         required={true}
         placeholder="Password"
-        className={`${false ? 'is-invalid ' : ''}form-control`}
+        className={`${signInError ? 'is-invalid ' : ''}form-control`}
       />
       <Button name="Sign in" disabled={isSigningIn} className="btn-primary" />
     </form>
@@ -81,19 +90,14 @@ const SigninForm = () => {
 
 const SigninView = () => {
   return (
-    <div className="login-layout">
-      <div className="left-bubble"></div>
-      <div className="right-bubble"></div>
-      <div className="wave one"></div>
-      <div className="wave two"></div>
-      <div className="wave three"></div>
+    <BubbleBackground className="fixed-height-layout">
       <div className="row justify-content-center m-4">
         <div className="col-md-4 p-5 rounded bg-white login-form">
           <h3 className="text-primary ml-md-3 ml-0 mb-3">Welcome back :)</h3>
           <SigninForm />
         </div>
       </div>
-    </div>
+    </BubbleBackground>
   );
 };
 

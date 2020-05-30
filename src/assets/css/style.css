@@ -9,6 +9,11 @@ button {
   font-family: 'Lato', sans-serif;
 }
 
+body {
+  overflow-x: hidden;
+  background-color: #f6f5f8;
+}
+
 h4,
 h5,
 .h4,
@@ -54,6 +59,12 @@ p.bold {
   color: #0E3C65 !important;
 }
 
+@media (min-width: 1200px) {
+  .container {
+    max-width: 100% !important;
+  }
+}
+
 img.logo {
   height: 42px;
 }
@@ -64,15 +75,12 @@ img.logo {
   }
 }
 
-.login-layout {
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-  padding-bottom: 100px;
-  background-color: #f6f5f8;
+.bubble-background {
+  overflow-x: hidden;
 }
 
-.login-layout .right-bubble {
+.bubble-background .right-bubble {
+  z-index: -1;
   right: -300px;
   width: 900px;
   height: 900px;
@@ -83,7 +91,8 @@ img.logo {
   background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
 }
 
-.login-layout .left-bubble {
+.bubble-background .left-bubble {
+  z-index: -1;
   top: -400px;
   left: -350px;
   width: 800px;
@@ -94,7 +103,8 @@ img.logo {
   background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
 }
 
-.login-layout .middle-bubble {
+.bubble-background .middle-bubble {
+  z-index: -1;
   top: 200px;
   left: 200px;
   width: 200px;
@@ -105,10 +115,24 @@ img.logo {
   background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
 }
 
-.login-layout div .login-form {
+.bubble-background div .login-form {
   margin-top: 120px;
   -webkit-box-shadow: 0px 0px 50px #2048738c;
           box-shadow: 0px 0px 50px #2048738c;
+}
+
+.fixed-height-layout {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.bring-to-front {
+  z-index: 1000;
+}
+
+.h-100 {
+  min-height: 100vh;
 }
 
 .btn-blue {

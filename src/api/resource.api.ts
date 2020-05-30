@@ -1,9 +1,10 @@
 import * as http from './http.api';
 import { Credentials } from 'auth/auth.type';
+import { Token } from './token.api';
 
 export const refreshAccessToken = () => {
   return http.post(`/auth/token`, {
-    referenceToken: '',
+    referenceToken: Token.getAccessToken(),
   });
 };
 
