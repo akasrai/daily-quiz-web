@@ -6,9 +6,6 @@ const BubbleBackground = ({ children, className = '' }: LayoutProps) => {
     <div className={`bubble-background ${className}`}>
       <div className="left-bubble"></div>
       <div className="right-bubble"></div>
-      <div className="wave one"></div>
-      <div className="wave two"></div>
-      <div className="wave three"></div>
       <div className="bring-to-front">{children}</div>
     </div>
   );

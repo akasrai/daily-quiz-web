@@ -8,7 +8,7 @@ export interface AuthState {
   user: User;
   token: string;
   roles: string[];
-  isSigningIn: boolean;
+  isHandlingAuth: boolean;
   isAuthenticated: boolean;
   setCurrentUser: (currentUser: User) => void;
   setCurrentAuth: (currentAuth: AuthState) => void;

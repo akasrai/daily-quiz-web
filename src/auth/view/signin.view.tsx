@@ -51,7 +51,7 @@ const restoreAuthentication = (dispatch: (props: Action) => void) => {
 const SigninForm = () => {
   const [checkAuth, setCheckAuth] = useState<boolean>(true);
   const [signInError, setSignInError] = useState<String>('');
-  const { setCurrentAuth, isSigningIn } = useContext(AuthContext);
+  const { setCurrentAuth, isHandlingAuth } = useContext(AuthContext);
   const [authState, dispatch] = useReducer(auth.reducer, auth.initialState);
 
   useEffect(() => {
@@ -84,7 +84,11 @@ const SigninForm = () => {
         placeholder="Password"
         className={`${signInError ? 'is-invalid ' : ''}form-control`}
       />
-      <Button name="Sign in" disabled={isSigningIn} className="btn-primary" />
+      <Button
+        name="Sign in"
+        disabled={isHandlingAuth}
+        className="btn-primary"
+      />
     </form>
   );
 };

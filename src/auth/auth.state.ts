@@ -6,11 +6,13 @@ import { Token } from 'api/token.api';
 const AUTH = 'AUTH';
 export const AUTH_LS_KEY = '_lst';
 export const UPDATE_USER = 'UPDATE_USER';
-export const SIGN_OUT = `${AUTH}_SIGN_OUT`;
 export const RESTORE_AUTH = 'RESTORE_AUTH';
 export const SIGN_IN_ERROR = `${AUTH}_SIGN_IN_ERROR`;
 export const SIGN_IN_PENDING = `${AUTH}_SIGN_IN_PENDING`;
 export const SIGN_IN_SUCCESS = `${AUTH}_SIGN_IN_SUCCESS`;
+export const SIGN_OUT_ERROR = `${AUTH}_SIGN_IN_ERROR`;
+export const SIGN_OUT_PENDING = `${AUTH}_SIGN_OUT_PENDING`;
+export const SIGN_OUT_SUCCESS = `${AUTH}_SIGN_OUT_SUCCESS`;
 
 export const initialState: AuthState = {
   user: {
@@ -20,7 +22,7 @@ export const initialState: AuthState = {
   },
   token: '',
   roles: [],
-  isSigningIn: false,
+  isHandlingAuth: false,
   isAuthenticated: false,
   setCurrentUser: () => null,
   setCurrentAuth: () => null,
@@ -32,8 +34,9 @@ export const reducer = (
 ): any => {
   switch (action.type) {
     case SIGN_IN_PENDING:
+    case SIGN_OUT_PENDING:
       return updateObject(state, {
-        isSigningIn: true,
+        isHandlingAuth: true,
       });
 
     case SIGN_IN_SUCCESS:
@@ -41,7 +44,7 @@ export const reducer = (
       securedLS.set(AUTH_LS_KEY, action.payload);
 
       return updateObject(state, {
-        isSigningIn: false,
+        isHandlingAuth: false,
         isAuthenticated: true,
         user: action.payload.user,
         token: action.payload.token,
@@ -51,10 +54,15 @@ export const reducer = (
     case SIGN_IN_ERROR:
       Token.deleteAccessToken();
       return updateObject(state, {
-        isSigningIn: false,
+        isHandlingAuth: false,
       });
 
-    case SIGN_OUT:
+    case SIGN_OUT_ERROR:
+      return updateObject(state, {
+        isHandlingAuth: false,
+      });
+
+    case SIGN_OUT_SUCCESS:
       Token.deleteAccessToken();
       securedLS.clear(AUTH_LS_KEY);
 
@@ -64,14 +72,11 @@ export const reducer = (
 
     case UPDATE_USER:
       const { data } = securedLS.get(AUTH_LS_KEY);
-      data.user = action.payload.user;
-      securedLS.set(AUTH_LS_KEY, data);
-
-      // console.log(action.payload.user, securedLS.get(AUTH_LS_KEY));
+      securedLS.set(AUTH_LS_KEY, { ...data, user: action.payload.user });
 
       return updateObject(state, {
         ...state,
-        isSigningIn: false,
+        isHandlingAuth: false,
         user: action.payload.user,
       });
 
@@ -79,7 +84,7 @@ export const reducer = (
       Token.setAccessToken(action.payload.token);
 
       return updateObject(state, {
-        isSigningIn: false,
+        isHandlingAuth: false,
         isAuthenticated: true,
         ...action.payload,
       });

@@ -1,12 +1,13 @@
 @import url("bootstrap.min.css");
 @import url("https://unpkg.com/ionicons@4.4.4/dist/css/ionicons.min.css");
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 body,
 input,
 textarea,
 select,
 button {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -30,6 +31,10 @@ h4,
 a,
 p.bold {
   color: #0e3c65;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 .btn-sm {
@@ -224,10 +229,10 @@ img.logo {
   display: flex;
   cursor: pointer;
   padding: 0.8em 2em;
+  font-size: 14px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  font-weight: bold;
 }
 
 .tabs .tab-label:hover {
@@ -313,5 +318,152 @@ img.logo {
 
 .tabs .tab input[name='sub-menu']:checked + .sub-tab-label {
   background: #143355;
+}
+
+.user-tool .user-tool-btn {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  color: white;
+  background: transparent;
+}
+
+.user-tool .user-tool-btn:focus .dropdown, .user-tool .user-tool-btn:active .dropdown {
+  opacity: 1;
+  z-index: 888;
+  visibility: visible;
+  -webkit-transform: translate(0, 20px);
+          transform: translate(0, 20px);
+}
+
+.user-tool .user-tool-btn .dropdown {
+  top: 50%;
+  right: 30px;
+  width: 250px;
+  padding: 10px 0px;
+  position: absolute;
+  background: #f9fafc;
+  opacity: 0;
+  text-align: left;
+  visibility: hidden;
+  border-radius: 4px;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  list-style-type: none;
+  -webkit-box-shadow: 0 4px 12px rgba(31, 71, 114, 0.1);
+          box-shadow: 0 4px 12px rgba(31, 71, 114, 0.1);
+}
+
+.user-tool .user-tool-btn .dropdown:before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  -webkit-box-shadow: 2px -2px 6px rgba(31, 71, 114, 0.05);
+          box-shadow: 2px -2px 6px rgba(31, 71, 114, 0.05);
+  border-top: 6px solid #f9fafc;
+  border-right: 6px solid #f9fafc;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid transparent;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  mix-blend-mode: multiple;
+}
+
+.user-tool .user-tool-btn .dropdown .list {
+  padding: 10px 30px;
+}
+
+.user-tool .user-tool-btn .dropdown .list:hover {
+  background-color: #dbe1e8;
+}
+
+.shake:hover > .icon {
+  -webkit-animation: bellshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+          animation: bellshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+@-webkit-keyframes bellshake {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  15% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  30% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  45% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  60% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+  75% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  85% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  92% {
+    -webkit-transform: rotate(1deg);
+            transform: rotate(1deg);
+  }
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+}
+
+@keyframes bellshake {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
+  15% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  30% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  45% {
+    -webkit-transform: rotate(4deg);
+            transform: rotate(4deg);
+  }
+  60% {
+    -webkit-transform: rotate(-4deg);
+            transform: rotate(-4deg);
+  }
+  75% {
+    -webkit-transform: rotate(2deg);
+            transform: rotate(2deg);
+  }
+  85% {
+    -webkit-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+  }
+  92% {
+    -webkit-transform: rotate(1deg);
+            transform: rotate(1deg);
+  }
+  100% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0);
+  }
 }
 /*# sourceMappingURL=style.css.map */

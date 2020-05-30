@@ -27,10 +27,9 @@ const DashboardView = () => {
   const [authState, dispatch] = useReducer(auth.reducer, auth.initialState);
 
   useEffect(() => {
-    setCurrentUser(authState.user);
-
     if (!user?.email) {
       getUser(dispatch);
+      setCurrentUser(authState.user);
     }
   }, [authState.user]);
 
