@@ -29,7 +29,7 @@ h4,
 
 a,
 p.bold {
-  color: #0E3C65;
+  color: #0e3c65;
 }
 
 .btn-sm {
@@ -38,25 +38,25 @@ p.bold {
 }
 
 .btn-primary {
-  background-color: #0E3C65;
-  border-color: #0E3C65;
+  background-color: #0e3c65;
+  border-color: #0e3c65;
 }
 
 .btn-danger {
-  background-color: #B31F31;
-  border-color: #B31F31;
+  background-color: #b31f31;
+  border-color: #b31f31;
 }
 
 .btn-link {
-  color: #0E3C65;
+  color: #0e3c65;
 }
 
 .text-danger {
-  color: #B31F31;
+  color: #b31f31;
 }
 
 .text-primary {
-  color: #0E3C65 !important;
+  color: #0e3c65 !important;
 }
 
 @media (min-width: 1200px) {
@@ -76,6 +76,8 @@ img.logo {
 }
 
 .bubble-background {
+  width: 100%;
+  position: fixed;
   overflow-x: hidden;
 }
 
@@ -85,7 +87,7 @@ img.logo {
   width: 900px;
   height: 900px;
   margin-top: -40px;
-  position: absolute;
+  position: fixed;
   border-radius: 100%;
   background-image: -webkit-gradient(linear, left top, right bottom, from(#0e3c65), to(#748abd));
   background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
@@ -97,7 +99,7 @@ img.logo {
   left: -350px;
   width: 800px;
   height: 800px;
-  position: absolute;
+  position: fixed;
   border-radius: 100%;
   background-image: -webkit-gradient(linear, left top, right bottom, from(#0e3c65), to(#748abd));
   background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
@@ -109,7 +111,7 @@ img.logo {
   left: 200px;
   width: 200px;
   height: 200px;
-  position: absolute;
+  position: fixed;
   border-radius: 100%;
   background-image: -webkit-gradient(linear, left top, right bottom, from(#0e3c65), to(#748abd));
   background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
@@ -131,8 +133,25 @@ img.logo {
   z-index: 1000;
 }
 
+.p-sticky {
+  position: -webkit-sticky !important;
+  /* Safari */
+  position: sticky !important;
+  top: 30px;
+}
+
 .h-100 {
-  min-height: 100vh;
+  min-height: 80vh;
+}
+
+.rounded-5 {
+  border-radius: 0.5rem !important;
+  -webkit-box-shadow: 0px 0px 15px #21487345;
+          box-shadow: 0px 0px 15px #21487345;
+}
+
+.bg-blue {
+  background-color: #1f4772;
 }
 
 .btn-blue {
@@ -186,5 +205,113 @@ img.logo {
 .show > .btn-outline-blue.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem #3c8dbc;
           box-shadow: 0 0 0 0.2rem #3c8dbc;
+}
+
+.tabs {
+  overflow: hidden;
+}
+
+.tabs .tab {
+  width: 100%;
+  color: white;
+  overflow: hidden;
+}
+
+.tabs .tab-label {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  padding: 0.8em 2em;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-weight: bold;
+}
+
+.tabs .tab-label:hover {
+  background: #122e4c;
+}
+
+.tabs .tab-label .arrow {
+  text-align: right;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.tabs .tab-content {
+  max-height: 0;
+  color: #173b61;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+}
+
+.tabs .tab-close {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 1em;
+  font-size: 0.75em;
+  background: #173b61;
+  cursor: pointer;
+}
+
+.tabs .tab-close:hover {
+  background: #0d2238;
+}
+
+.tabs .tab input[name='main-menu'] {
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+}
+
+.tabs .tab input[name='main-menu']:checked + .tab-label {
+  background: #173b61;
+}
+
+.tabs .tab input[name='main-menu']:checked + .tab-label .arrow {
+  text-align: right;
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  color: #cccccc;
+}
+
+.tabs .tab input[name='main-menu']:checked ~ .tab-content {
+  max-height: 100vh;
+}
+
+.tabs .tab .sub-tab {
+  color: white;
+  overflow: hidden;
+}
+
+.tabs .tab .sub-tab-label {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+  padding: 0.8em 2em;
+}
+
+.tabs .tab .sub-tab-label:hover {
+  background: #122e4c;
+}
+
+.tabs .tab input[name='sub-menu'] {
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+}
+
+.tabs .tab input[name='sub-menu']:checked + .sub-tab-label {
+  background: #143355;
 }
 /*# sourceMappingURL=style.css.map */
