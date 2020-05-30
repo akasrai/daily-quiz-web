@@ -1,9 +1,10 @@
 import React from 'react';
+
+import Flex from './component/flex';
 import { LayoutProps } from './layout.type';
 import PrivateNavBar from './component/private-navbar';
 import BubbleBackground from './bubble-background.layout';
 import PrivateSidebar from './component/private-sidebar';
-import Flex from './component/flex';
 
 const AuthenticatedLayout = ({ children }: LayoutProps) => {
   return (
@@ -17,7 +18,9 @@ const AuthenticatedLayout = ({ children }: LayoutProps) => {
           </div>
         </div>
       </Flex>
-      <Flex className="justify-content-between p-3" />
+      <Flex className="justify-content-center p-5">
+        <span>&copy; 2020 DailyQuiz</span>
+      </Flex>
     </BubbleBackground>
   );
 };

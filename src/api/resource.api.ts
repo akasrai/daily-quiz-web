@@ -13,7 +13,7 @@ export const signIn = (credentials: Credentials) => {
 };
 
 export const getCurrentUser = () => {
-  return http.get(`/user`);
+  return http.get(`/auth/users`);
 };
 
 export const signOut = () => {
