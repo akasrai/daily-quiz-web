@@ -49,7 +49,7 @@ const SubTab = ({ name, icon, route }: TabProps) => (
   </div>
 );
 
-const PrivateSidebar = ({ children }: SidebarProps) => {
+const PrivateSidebar = () => {
   return (
     <section className="col-md-3">
       <div className="col-md-12 ml-2 p-0 pt-3 pb-3 rounded-5 bg-blue text-white h-100 p-sticky">

@@ -130,6 +130,10 @@ img.logo {
   position: relative;
 }
 
+.page-title {
+  text-shadow: 0px 0px 6px #224974;
+}
+
 .bring-to-front {
   z-index: 1000;
 }
@@ -296,6 +300,9 @@ img.logo {
 }
 
 .user-tool {
+  display: flex;
+  justify-content: flex-end;
+
   .user-tool-btn {
     border: 0;
     outline: 0;
