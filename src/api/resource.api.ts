@@ -24,3 +24,7 @@ export const signOut = () => {
 export const createQuiz = (quizPayload: QuizPayload) => {
   return http.post(`/quiz`, quizPayload);
 };
+
+export const getCurrentSeason = () => {
+  return http.get(`/quiz/current/season`);
+};
