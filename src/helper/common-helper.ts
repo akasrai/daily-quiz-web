@@ -57,3 +57,21 @@ export const updateObject = (oldObject: object, updatedProperties: object) => ({
   ...oldObject,
   ...updatedProperties,
 });
+
+export const isInputEmpty = (input: HTMLInputElement) => {
+  if (!input.value) {
+    return true;
+  } else {
+    unsetIsInvalidField(input);
+
+    return false;
+  }
+};
+
+export const setIsInvalidField = (input: HTMLInputElement) => {
+  input.classList.add('is-invalid');
+};
+
+export const unsetIsInvalidField = (input: HTMLInputElement) => {
+  input.classList.remove('is-invalid');
+};

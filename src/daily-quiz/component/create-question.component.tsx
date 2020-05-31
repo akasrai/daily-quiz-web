@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 import { Button } from 'ui/form/button';
-import { InfoAlert, ErrorAlert } from 'ui/form/alert';
 import Flex from 'ui/layout/component/flex';
+import { createQuiz } from 'api/resource.api';
+import { InfoAlert, ErrorAlert } from 'ui/form/alert';
 import { Input, TextArea, RadioButton, Select } from 'ui/form/input';
 import { OptionPayload, QuizPayload } from 'daily-quiz/daily-quiz.type';
 import { TOTAL_OPTIONS, category } from 'daily-quiz/daily-quiz.constant';
-import { createQuiz } from 'api/resource.api';
 
 const handleCreateQuiz = async (
   e: any,
@@ -54,7 +54,7 @@ const isPresent = (answer: String, answers: Array<OptionPayload>) => {
   return answers.find((option) => option.answer === answer);
 };
 
-const QuestionForm = () => {
+const CreateQuestion = () => {
   const [error, setError] = useState<String>('');
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const [options, setOptions] = useState<{ [key: string]: string }>({});
@@ -102,14 +102,6 @@ const QuestionForm = () => {
 
       <Button name="Create" disabled={isCreating} className="md btn-primary" />
     </form>
-  );
-};
-
-const CreateQuestion = () => {
-  return (
-    <div>
-      <QuestionForm />
-    </div>
   );
 };
 

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import AuthenticatedLayout from 'ui/layout/authenticated.layout';
-import { Button } from 'ui/form/button';
-import CreateQuestion from 'daily-quiz/component/create-question.component';
-import Flex from 'ui/layout/component/flex';
+
 import Hr from 'ui/form/hr';
+import { Button } from 'ui/form/button';
+import Flex from 'ui/layout/component/flex';
+import AuthenticatedLayout from 'ui/layout/authenticated.layout';
+import CreateQuestion from 'daily-quiz/component/create-question.component';
 
 interface HeaderProps {
   createNewQuiz: boolean;
@@ -42,7 +43,7 @@ const NewQuiz = () => {
 };
 
 const QuestionView = () => {
-  const [createNewQuiz, setCreateNewQuiz] = useState<boolean>(true);
+  const [createNewQuiz, setCreateNewQuiz] = useState<boolean>(false);
 
   return (
     <AuthenticatedLayout>
