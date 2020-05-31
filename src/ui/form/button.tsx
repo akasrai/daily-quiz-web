@@ -3,22 +3,30 @@ import { WhiteDottedLoader } from 'ui/icons/pending-icon';
 
 interface ButtonProps {
   name: string;
+  icon?: string;
   className: string;
-  disabled: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { name, disabled, className } = props;
+  const { icon, name, onClick, disabled = false, className } = props;
 
   return (
-    <div className="col-12 p-0">
-      <button
-        type="submit"
-        disabled={disabled}
-        className={`btn btn-md ${className} btn-block`}
-      >
-        {disabled ? <WhiteDottedLoader /> : name}
-      </button>
-    </div>
+    <button
+      type="submit"
+      onClick={onClick}
+      disabled={disabled}
+      className={`btn btn-${className} btn-block`}
+    >
+      {disabled ? (
+        <WhiteDottedLoader />
+      ) : (
+        <>
+          <i className={`icon ion-${icon} pr-2`} />
+          {name}
+        </>
+      )}
+    </button>
   );
 };

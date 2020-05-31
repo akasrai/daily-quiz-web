@@ -5,7 +5,7 @@ import { ROUTE } from 'app/app.route-path';
 
 interface TabProps {
   name: String;
-  icon: String;
+  icon?: String;
   route?: string;
   children?: ReactNode;
 }
@@ -47,6 +47,7 @@ const Tab = ({ name, icon, route, children }: TabProps) => {
         id={tabId}
         type="radio"
         name="main-menu"
+        className="tab-input"
         checked={sidebarMenu.isActive(tabId, sidebarMenu.TAB)}
         onChange={() => handleRoute(route, tabId, sidebarMenu.TAB)}
       />
@@ -64,7 +65,7 @@ const Tab = ({ name, icon, route, children }: TabProps) => {
   );
 };
 
-const SubTab = ({ name, icon, route }: TabProps) => {
+const SubTab = ({ name, icon = 'ios-arrow-forward', route }: TabProps) => {
   const subTabId = generateIdFromName(name);
 
   return (
@@ -73,6 +74,7 @@ const SubTab = ({ name, icon, route }: TabProps) => {
         type="radio"
         id={subTabId}
         name="sub-menu"
+        className="sub-tab-input"
         checked={sidebarMenu.isActive(subTabId, sidebarMenu.SUB_TAB)}
         onChange={() => handleRoute(route, subTabId, sidebarMenu.SUB_TAB)}
       />
@@ -89,16 +91,12 @@ const SubTab = ({ name, icon, route }: TabProps) => {
 const PrivateSidebar = () => {
   return (
     <section className="col-md-3">
-      <div className="col-md-12 ml-2 p-0 pt-3 pb-3 rounded-5 bg-blue text-white h-100 p-sticky">
+      <div className="col-md-12 ml-2 p-0 pt-3 pb-3 rounded-5 bg-blue text-white sidebar p-sticky">
         <div className="tabs">
           <Tab name="Dashboard" icon="ios-home" route={ROUTE.DASHBOARD} />
           <Tab name="Quiz" icon="ios-help-circle" route="/">
-            <SubTab
-              name="Seasons"
-              icon="ios-arrow-forward"
-              route={ROUTE.QUIZ_SEASON}
-            />
-            <SubTab name="Questions" icon="ios-arrow-forward" />
+            <SubTab name="Seasons" route={ROUTE.QUIZ_SEASON} />
+            <SubTab name="Questions" route={ROUTE.QUIZ_QUESTION} />
           </Tab>
           <Tab name="Members" icon="md-contacts" route={ROUTE.DASHBOARD} />
           <Tab name="Settings" icon="md-construct" route={ROUTE.DASHBOARD} />

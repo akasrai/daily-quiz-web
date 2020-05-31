@@ -10,8 +10,8 @@ import { securedLS } from 'helper/local-storage-helper';
 import { Input } from 'ui/form/input';
 import { Button } from 'ui/form/button';
 import { ErrorAlert } from 'ui/form/alert';
-import BubbleBackground from 'ui/layout/bubble-background.layout';
 import Flex from 'ui/layout/component/flex';
+import BubbleBackground from 'ui/layout/bubble-background.layout';
 
 const handleSignIn = async (
   event: any,
@@ -61,7 +61,7 @@ const SigninForm = () => {
       setCheckAuth(false);
       restoreAuthentication(dispatch);
     }
-  }, [authState]);
+  }, [authState, checkAuth, setCheckAuth, setCurrentAuth]);
 
   return (
     <form
@@ -75,19 +75,19 @@ const SigninForm = () => {
         name="email"
         required={true}
         placeholder="Email"
-        className={`${signInError ? 'is-invalid ' : ''}form-control`}
+        className={`${signInError ? 'is-invalid ' : ''}`}
       />
       <Input
         type="password"
         name="password"
         required={true}
         placeholder="Password"
-        className={`${signInError ? 'is-invalid ' : ''}form-control`}
+        className={`${signInError ? 'is-invalid ' : ''}`}
       />
       <Button
         name="Sign in"
         disabled={isHandlingAuth}
-        className="btn-primary"
+        className="md btn-primary"
       />
     </form>
   );

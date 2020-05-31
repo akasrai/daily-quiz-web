@@ -1,6 +1,7 @@
 import * as http from './http.api';
-import { Credentials } from 'auth/auth.type';
 import { Token } from './token.api';
+import { Credentials } from 'auth/auth.type';
+import { QuizPayload } from 'daily-quiz/daily-quiz.type';
 
 export const refreshAccessToken = () => {
   return http.post(`/auth/token`, {
@@ -18,4 +19,8 @@ export const getCurrentUser = () => {
 
 export const signOut = () => {
   return http.get(`/auth/signout`);
+};
+
+export const createQuiz = (quizPayload: QuizPayload) => {
+  return http.post(`/quiz`, quizPayload);
 };

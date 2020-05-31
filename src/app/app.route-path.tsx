@@ -5,4 +5,5 @@ export const ROUTE = {
 
   // Quiz
   QUIZ_SEASON: '/quiz/season',
+  QUIZ_QUESTION: '/quiz/question',
 };

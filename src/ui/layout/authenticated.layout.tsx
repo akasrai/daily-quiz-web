@@ -13,13 +13,15 @@ const AuthenticatedLayout = ({ children }: LayoutProps) => {
       <Flex className="justify-content-between">
         <PrivateSidebar />
         <div className="col-md-9">
-          <div className="col-md-12 mr-3 rounded-5 p-4 bg-white h-100">
+          <div className="col-md-12 mr-3 rounded-5 p-5 bg-white h-100">
             {children}
           </div>
         </div>
       </Flex>
       <Flex className="justify-content-center p-5">
-        <span>&copy; 2020 DailyQuiz</span>
+        <span>
+          &copy; 2020 Daily<span className="bold">Quiz</span>
+        </span>
       </Flex>
     </BubbleBackground>
   );

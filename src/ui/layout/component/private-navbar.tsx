@@ -50,7 +50,7 @@ const PrivateNavBar = () => {
     if (isSignedOut) {
       setCurrentAuth(authState);
     }
-  }, [isSignedOut]);
+  }, [isSignedOut, authState, setCurrentAuth]);
 
   return (
     <section className="col-12 p-4 mt-1">

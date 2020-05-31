@@ -56,6 +56,56 @@ a {
   }
 }
 
+[type='radio']:checked,
+[type='radio']:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+[type='radio']:checked + label,
+[type='radio']:not(:checked) + label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+[type='radio']:checked + label:before,
+[type='radio']:not(:checked) + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  border-radius: 0%;
+  background: #fff;
+}
+[type='radio']:checked + label:after,
+[type='radio']:not(:checked) + label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  background: $color-dark-blue;
+  top: 3px;
+  left: 3px;
+  border-radius: 0%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+[type='radio']:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+[type='radio']:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
 .text {
   &-danger {
     color: $color-red;
@@ -206,6 +256,10 @@ img.logo {
   box-shadow: 0 0 0 0.2rem #3c8dbc;
 }
 
+.sidebar {
+  min-height: 80vh;
+}
+
 .tabs {
   overflow: hidden;
 
@@ -216,11 +270,34 @@ img.logo {
 
     &-label {
       margin: 0;
-      display: flex;
       cursor: pointer;
-      padding: 0.8em 2em;
       font-size: 14px;
+      padding: 0.8em 2em;
+      display: flex !important;
+      color: white !important;
       justify-content: space-between;
+
+      &::before {
+        position: none !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        border: none !important;
+        border-radius: 0% !important;
+        background: transparent !important;
+      }
+
+      &::after {
+        position: none !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: auto !important;
+        height: auto !important;
+        border: none !important;
+        border-radius: 0% !important;
+        background: transparent !important;
+      }
 
       &:hover {
         background: darken($color-active-menu, 5%);
@@ -248,14 +325,15 @@ img.logo {
       }
     }
 
-    input[name='main-menu'] {
-      opacity: 0;
-      z-index: -1;
+    .tab-input {
       position: absolute;
+      opacity: 0 !important;
+      z-index: -1 !important;
     }
 
-    input[name='main-menu']:checked {
+    .tab-input:checked {
       + .tab-label {
+        color: white !important;
         background: darken($color-active-menu, 0%);
         .arrow {
           text-align: right;
@@ -275,24 +353,48 @@ img.logo {
 
       &-label {
         margin: 0;
-        display: flex;
         cursor: pointer;
         padding: 0.8em 2em;
+        color: white !important;
+        display: flex !important;
 
         &:hover {
           background: darken($color-active-menu, 5%);
         }
+
+        &::before {
+          position: none !important;
+          left: 0 !important;
+          top: 0 !important;
+          width: auto !important;
+          height: auto !important;
+          border: none !important;
+          border-radius: 0% !important;
+          background: transparent !important;
+        }
+
+        &::after {
+          position: none !important;
+          left: 0 !important;
+          top: 0 !important;
+          width: auto !important;
+          height: auto !important;
+          border: none !important;
+          border-radius: 0% !important;
+          background: transparent !important;
+        }
       }
     }
 
-    input[name='sub-menu'] {
-      opacity: 0;
-      z-index: -1;
+    .sub-tab-input {
       position: absolute;
+      opacity: 0 !important;
+      z-index: -1 !important;
     }
 
-    input[name='sub-menu']:checked {
+    .sub-tab-input:checked {
       + .sub-tab-label {
+        color: white !important;
         background: darken($color-active-menu, 3%);
       }
     }

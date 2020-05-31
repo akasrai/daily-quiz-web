@@ -1,6 +1,5 @@
-import React, { useReducer, useEffect, useContext, useState } from 'react';
+import React, { useReducer, useEffect, useContext } from 'react';
 
-import { User } from 'auth/auth.type';
 import * as auth from 'auth/auth.state';
 import { AuthContext } from 'auth/auth.context';
 import { getCurrentUser } from 'api/resource.api';
