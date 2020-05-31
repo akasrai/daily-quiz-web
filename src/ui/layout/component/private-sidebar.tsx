@@ -1,11 +1,7 @@
 import React, { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+
 import { history } from 'app/app.history';
 import { ROUTE } from 'app/app.route-path';
-
-interface SidebarProps {
-  children?: ReactNode;
-}
 
 interface TabProps {
   name: String;
@@ -14,40 +10,81 @@ interface TabProps {
   children?: ReactNode;
 }
 
+const sidebarMenu = {
+  TAB: 'tab',
+  SUB_TAB: 'sub_tab',
+  ACTIVE_SUB_TAB: '',
+  ACTIVE_TAB: 'Dashboard',
+
+  setActiveTab(tab: string, type: string) {
+    if (this.TAB === type) return (this.ACTIVE_TAB = tab);
+
+    return (this.ACTIVE_SUB_TAB = tab);
+  },
+
+  isActive(tab: string, type: string) {
+    if (this.TAB === type) return this.ACTIVE_TAB === tab;
+
+    return this.ACTIVE_SUB_TAB === tab;
+  },
+};
+
 const redirectTo = (route: string = '/') => history.push(route);
 
-const Tab = ({ name, icon, route, children }: TabProps) => (
-  <div className="tab">
-    <input
-      type="radio"
-      name="main-menu"
-      id={name.split(' ').join('-')}
-      onChange={() => redirectTo(route)}
-    />
-    <label className="tab-label" htmlFor={name.split(' ').join('-')}>
-      <span className="shake p">
-        <i className={`icon ion-${icon} p mr-3 m-0 d-inline-block`} />
-        {name}
-      </span>
-      {children && (
-        <i className="icon ion-ios-arrow-forward ml-2 arrow float-right" />
-      )}
-    </label>
-    <div className="tab-content">{children}</div>
-  </div>
-);
+const generateIdFromName = (name: String) => name.split(' ').join('-');
 
-const SubTab = ({ name, icon, route }: TabProps) => (
-  <div className="sub-tab">
-    <input type="radio" id={name.split(' ').join('-')} name="sub-menu" />
-    <label className="sub-tab-label" htmlFor={name.split(' ').join('-')}>
-      <span className="p pt-0 pl-3 small shake">
-        <i className={`icon ion-${icon} p mr-3 m-0 d-inline-block`} />
-        {name}
-      </span>
-    </label>
-  </div>
-);
+const handleRoute = (route: string = '', tabId: string, type: string) => {
+  if (route) redirectTo(route);
+  sidebarMenu.setActiveTab(tabId, type);
+};
+
+const Tab = ({ name, icon, route, children }: TabProps) => {
+  const tabId = generateIdFromName(name);
+
+  return (
+    <div className="tab">
+      <input
+        id={tabId}
+        type="radio"
+        name="main-menu"
+        checked={sidebarMenu.isActive(tabId, sidebarMenu.TAB)}
+        onChange={() => handleRoute(route, tabId, sidebarMenu.TAB)}
+      />
+      <label className="tab-label" htmlFor={tabId}>
+        <span className="shake p">
+          <i className={`icon ion-${icon} p mr-3 m-0 d-inline-block`} />
+          {name}
+        </span>
+        {children && (
+          <i className="icon ion-ios-arrow-forward ml-2 arrow float-right" />
+        )}
+      </label>
+      <div className="tab-content">{children}</div>
+    </div>
+  );
+};
+
+const SubTab = ({ name, icon, route }: TabProps) => {
+  const subTabId = generateIdFromName(name);
+
+  return (
+    <div className="sub-tab">
+      <input
+        type="radio"
+        id={subTabId}
+        name="sub-menu"
+        checked={sidebarMenu.isActive(subTabId, sidebarMenu.SUB_TAB)}
+        onChange={() => handleRoute(route, subTabId, sidebarMenu.SUB_TAB)}
+      />
+      <label className="sub-tab-label" htmlFor={subTabId}>
+        <span className="p pt-0 pl-3 small shake">
+          <i className={`icon ion-${icon} p mr-3 m-0 d-inline-block`} />
+          {name}
+        </span>
+      </label>
+    </div>
+  );
+};
 
 const PrivateSidebar = () => {
   return (
@@ -55,12 +92,12 @@ const PrivateSidebar = () => {
       <div className="col-md-12 ml-2 p-0 pt-3 pb-3 rounded-5 bg-blue text-white h-100 p-sticky">
         <div className="tabs">
           <Tab name="Dashboard" icon="ios-home" route={ROUTE.DASHBOARD} />
-          <Tab
-            name="Quiz"
-            icon="ios-help-circle"
-            route={window.location.pathname}
-          >
-            <SubTab name="Seasons" icon="ios-arrow-forward" />
+          <Tab name="Quiz" icon="ios-help-circle" route="/">
+            <SubTab
+              name="Seasons"
+              icon="ios-arrow-forward"
+              route={ROUTE.QUIZ_SEASON}
+            />
             <SubTab name="Questions" icon="ios-arrow-forward" />
           </Tab>
           <Tab name="Members" icon="md-contacts" route={ROUTE.DASHBOARD} />

@@ -8,6 +8,7 @@ import PageNotFound from 'ui/layout/404.layout';
 import { ReloadRoute } from 'ui/route/reload-route';
 import { AuthContext } from 'auth/auth.context';
 import DashboardView from 'dashboard/view/dashboard.view';
+import QuizRoutes from 'daily-quiz/daily-quiz.route';
 
 const AuthenticatedRoute = (props: any) => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const AuthenticatedRoute = (props: any) => {
   );
 };
 
-const PrivateRoute = withRouter(AuthenticatedRoute);
+export const PrivateRoute = withRouter(AuthenticatedRoute);
 
 const NonAuthenticatedRoute = (props: any) => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const NonAuthenticatedRoute = (props: any) => {
   );
 };
 
-const PublicRoute = withRouter(NonAuthenticatedRoute);
+export const PublicRoute = withRouter(NonAuthenticatedRoute);
 
 const AppRoutes = () => (
   <Router history={history}>
@@ -39,6 +40,9 @@ const AppRoutes = () => (
       <PublicRoute exact path={ROUTE.HOME} component={SigninView} />
       <PublicRoute exact path={ROUTE.SIGNIN} component={SigninView} />
       <PrivateRoute exact path={ROUTE.DASHBOARD} component={DashboardView} />
+
+      <QuizRoutes />
+
       <Route component={PageNotFound} />
     </Switch>
   </Router>
