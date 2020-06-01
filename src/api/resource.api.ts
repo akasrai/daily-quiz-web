@@ -28,3 +28,7 @@ export const createQuiz = (quizPayload: QuizPayload) => {
 export const getCurrentSeason = () => {
   return http.get(`/quiz/current/season`);
 };
+
+export const getTop10SeasonStats = () => {
+  return http.get(`quiz/seasons/stats`);
+};

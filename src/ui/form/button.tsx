@@ -17,13 +17,13 @@ export const Button = (props: ButtonProps) => {
       type="submit"
       onClick={onClick}
       disabled={disabled}
-      className={`btn btn-${className} btn-block`}
+      className={`btn btn-${className} btn-block shake`}
     >
       {disabled ? (
         <WhiteDottedLoader />
       ) : (
         <>
-          <i className={`icon ion-${icon} pr-2`} />
+          <i className={`icon ion-${icon} pr-2 d-inline-block`} />
           {name}
         </>
       )}

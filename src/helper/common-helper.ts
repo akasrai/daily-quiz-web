@@ -1,4 +1,5 @@
 import { ApiResponse } from 'api/api.type';
+import { ROMAN_MATRIX } from 'helper/helper.constant';
 
 const toString = Object.prototype.toString;
 
@@ -74,4 +75,14 @@ export const setIsInvalidField = (input: HTMLInputElement) => {
 
 export const unsetIsInvalidField = (input: HTMLInputElement) => {
   input.classList.remove('is-invalid');
+};
+
+export const getRomanOf = (num: number): any => {
+  if (num === 0) return '';
+
+  for (const elem of ROMAN_MATRIX) {
+    if (num >= elem[0]) {
+      return elem[1] + getRomanOf(num - elem[0]);
+    }
+  }
 };
