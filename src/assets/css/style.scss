@@ -1,4 +1,5 @@
 @import url('bootstrap.min.css');
+@import url('custom-react-tostify.css');
 @import url('https://unpkg.com/ionicons@4.4.4/dist/css/ionicons.min.css');
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
@@ -544,4 +545,54 @@ img.logo {
   border-radius: 50%;
   position: relative;
   display: inline-block;
+}
+
+.modal-open {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: rgba(0, 0, 0, 0.73);
+  z-index: 999;
+}
+
+.modal-dialog {
+  pointer-events: all !important;
+}
+
+.modal-content {
+  background: white;
+}
+
+.container-loader {
+  margin: auto;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  width: 74px;
+  height: 74px;
+}
+
+.text-blink {
+  animation-name: blinker;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

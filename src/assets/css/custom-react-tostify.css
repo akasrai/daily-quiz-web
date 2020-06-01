@@ -1,0 +1,19 @@
+.Toastify__toast {
+  border-radius: 4px !important;
+}
+
+.Toastify__toast--success {
+  background: #28a745 !important;
+}
+
+.Toastify__toast--warning {
+  background: #c58309 !important;
+}
+
+.Toastify__toast--error {
+  background: #b31f31 !important;
+}
+.Toastify__progress-bar {
+  height: 4px;
+  opacity: 0.1;
+}

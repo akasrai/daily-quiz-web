@@ -1,17 +1,17 @@
+import { toast } from 'react-toastify';
 import React, { useState, useEffect, Fragment } from 'react';
 
-import {
-  Winner,
-  QuizSeason,
-  Top10SeasonStats,
-} from 'daily-quiz/daily-quiz.type';
 import Hr from 'ui/form/hr';
 import { Button } from 'ui/form/button';
 import Flex from 'ui/layout/component/flex';
 import Image from 'ui/layout/component/image';
+import { PopupAlert } from 'ui/alert/popup-alert';
 import { getRomanOf } from 'helper/common-helper';
-import { getTop10SeasonStats } from 'api/resource.api';
+import { VALIDATION } from 'daily-quiz/daily-quiz.constant';
 import AuthenticatedLayout from 'ui/layout/authenticated.layout';
+import { getTop10SeasonStats, endSeason } from 'api/resource.api';
+import { ErrorMessage, SuccessMessage } from 'ui/alert/toast-alert';
+import { Winner, Top10SeasonStats } from 'daily-quiz/daily-quiz.type';
 
 const getSeasonStats = async (
   setSeasonStats: (prop: Array<Top10SeasonStats>) => void
@@ -19,10 +19,27 @@ const getSeasonStats = async (
   const { data, error } = await getTop10SeasonStats();
 
   if (error) {
-    return;
+    return toast.error(<ErrorMessage message={error.message} />);
   }
 
   setSeasonStats(data.result);
+};
+
+const endCurrentSeason = async (
+  setSeasonEnded: (prop: boolean) => void,
+  setIsEndingSeason: (prop: boolean) => void
+) => {
+  setIsEndingSeason(true);
+  const { error } = await endSeason();
+
+  if (error) {
+    setIsEndingSeason(false);
+    return toast.error(<ErrorMessage message={error.message} />);
+  }
+
+  setSeasonEnded(true);
+  setIsEndingSeason(false);
+  toast.success(<SuccessMessage message={VALIDATION.SEASON_ENDED} />);
 };
 
 const Header = () => {
@@ -33,31 +50,54 @@ const Header = () => {
   );
 };
 
-const CurrentSeason = ({ season }: { season: Top10SeasonStats }) => (
-  <Flex className="justify-content-between">
-    <div>
+const CurrentSeason = ({
+  season,
+  setSeasonEnded,
+}: {
+  season: Top10SeasonStats;
+  setSeasonEnded: (prop: boolean) => void;
+}) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [isEndingSeason, setIsEndingSeason] = useState<boolean>(false);
+
+  return (
+    <Flex className="justify-content-between">
       <div>
-        <span className="small text-muted">
-          Season: {getRomanOf(season.season)}
-          <span className="active-season ml-2">
-            <span className="dot bg-white"></span>ACTIVE
+        <div>
+          <span className="small text-muted">
+            Season: {getRomanOf(season.season)}
+            <span className="active-season ml-2">
+              <span className="dot bg-white"></span>ACTIVE
+            </span>
           </span>
-        </span>
-        <span className="h3 d-block ">{season?.title}</span>
+          <span className="h3 d-block text-muted">{season?.title}</span>
+        </div>
+        <DateDetail name="Hosted on" date={season.createdAt} />
+        <DateDetail name="Ends on" date={season.endsAt} />
       </div>
-      <DateDetail name="Hosted on" date={season.createdAt} />
-      <DateDetail name="Ends on" date={season.endsAt} />
-    </div>
-    <div>
-      <Button
-        icon="md-power"
-        name="End Season"
-        disabled={false}
-        className="sm btn-outline-danger"
-      />
-    </div>
-  </Flex>
-);
+      <div>
+        <PopupAlert
+          className="danger"
+          title="Are you sure?"
+          message="Do you really want to end this Season?"
+          alert={open}
+          isTakingAction={isEndingSeason}
+          toggleConfirmationBox={() => setOpen(!open)}
+          asyncAction={() =>
+            endCurrentSeason(setSeasonEnded, setIsEndingSeason)
+          }
+        />
+        <Button
+          icon="md-power"
+          name="End Season"
+          disabled={false}
+          onClick={() => setOpen(true)}
+          className="sm btn-outline-danger mt-4"
+        />
+      </div>
+    </Flex>
+  );
+};
 
 const WinnerStats = ({
   winner,
@@ -102,7 +142,7 @@ const SeasonStats = ({ season }: { season: Top10SeasonStats }) => (
         <DateDetail name="Ended on" date={season.updatedAt} />
       </div>
       {season.winners.map((winner: Winner, key: number) => (
-        <WinnerStats position={key + 1} winner={winner} />
+        <WinnerStats key={key} position={key + 1} winner={winner} />
       ))}
     </Flex>
   </Fragment>
@@ -116,20 +156,23 @@ const DateDetail = ({ name, date }: { name: string; date: string }) => (
 );
 
 const SeasonView = () => {
+  const [seasonEnded, setSeasonEnded] = useState<boolean>(false);
   const [seasonSats, setSeasonStats] = useState<Array<Top10SeasonStats>>();
 
   useEffect(() => {
     getSeasonStats(setSeasonStats);
-  }, []);
+  }, [seasonEnded]);
 
   return (
     <AuthenticatedLayout>
       <Header />
       <Hr />
-      {seasonSats?.map((season: Top10SeasonStats) => (
-        <Fragment>
-          {season.active && <CurrentSeason season={season} />}
+      {seasonSats?.map((season: Top10SeasonStats, key: number) => (
+        <Fragment key={key}>
           {!season.active && <SeasonStats season={season} />}
+          {season.active && (
+            <CurrentSeason setSeasonEnded={setSeasonEnded} season={season} />
+          )}
           <Hr />
         </Fragment>
       ))}

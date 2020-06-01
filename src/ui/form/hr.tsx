@@ -5,7 +5,7 @@ interface HrProps {
 }
 
 const Hr = (props: HrProps) => {
-  const { className } = props;
+  const { className = '' } = props;
 
   return <hr className={`${className}`} />;
 };

@@ -26,7 +26,7 @@ const NonAuthenticatedRoute = (props: any) => {
   const { isAuthenticated } = useContext(AuthContext);
 
   return isAuthenticated ? (
-    <Redirect to={ROUTE.QUIZ_SEASON} />
+    <Redirect to={ROUTE.DASHBOARD} />
   ) : (
     <Route {...props} />
   );

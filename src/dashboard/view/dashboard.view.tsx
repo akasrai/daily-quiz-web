@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useContext } from 'react';
+import React, { useReducer, useEffect, useContext, useState } from 'react';
 
 import * as auth from 'auth/auth.state';
 import { AuthContext } from 'auth/auth.context';
@@ -23,14 +23,17 @@ const getUser = async (dispatch: (props: any) => void) => {
 
 const DashboardView = () => {
   const { setCurrentUser, user } = useContext(AuthContext);
+  const [isUserFetched, setIsUserFetched] = useState<boolean>(false);
   const [authState, dispatch] = useReducer(auth.reducer, auth.initialState);
 
   useEffect(() => {
-    if (!user?.email) {
+    setCurrentUser(authState.user);
+
+    if (!isUserFetched) {
       getUser(dispatch);
-      setCurrentUser(authState.user);
+      setIsUserFetched(true);
     }
-  }, [authState.user]);
+  }, [authState]);
 
   return (
     <AuthenticatedLayout>

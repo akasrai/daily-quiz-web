@@ -9,7 +9,7 @@ import { securedLS } from 'helper/local-storage-helper';
 
 import { Input } from 'ui/form/input';
 import { Button } from 'ui/form/button';
-import { ErrorAlert } from 'ui/form/alert';
+import { ErrorAlert } from 'ui/alert/inline-alert';
 import Flex from 'ui/layout/component/flex';
 import BubbleBackground from 'ui/layout/bubble-background.layout';
 

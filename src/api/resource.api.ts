@@ -32,3 +32,7 @@ export const getCurrentSeason = () => {
 export const getTop10SeasonStats = () => {
   return http.get(`quiz/seasons/stats`);
 };
+
+export const endSeason = () => {
+  return http.get(`/quiz/end/season`);
+};

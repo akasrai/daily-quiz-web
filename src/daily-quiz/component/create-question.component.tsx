@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from 'ui/form/button';
 import Flex from 'ui/layout/component/flex';
 import { createQuiz } from 'api/resource.api';
-import { InfoAlert, ErrorAlert } from 'ui/form/alert';
+import { InfoAlert, ErrorAlert } from 'ui/alert/inline-alert';
 import { Input, TextArea, RadioButton, Select } from 'ui/form/input';
 import { OptionPayload, QuizPayload } from 'daily-quiz/daily-quiz.type';
 import { TOTAL_OPTIONS, category } from 'daily-quiz/daily-quiz.constant';
