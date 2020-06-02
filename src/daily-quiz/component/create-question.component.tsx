@@ -1,12 +1,18 @@
+import { toast } from 'react-toastify';
 import React, { useState } from 'react';
 
+import {
+  category,
+  VALIDATION,
+  TOTAL_OPTIONS,
+} from 'daily-quiz/daily-quiz.constant';
 import { Button } from 'ui/form/button';
 import Flex from 'ui/layout/component/flex';
 import { createQuiz } from 'api/resource.api';
+import { SuccessMessage } from 'ui/alert/toast-alert';
 import { InfoAlert, ErrorAlert } from 'ui/alert/inline-alert';
 import { Input, TextArea, RadioButton, Select } from 'ui/form/input';
 import { OptionPayload, QuizPayload } from 'daily-quiz/daily-quiz.type';
-import { TOTAL_OPTIONS, category } from 'daily-quiz/daily-quiz.constant';
 
 const handleCreateQuiz = async (
   e: any,
@@ -24,6 +30,7 @@ const handleCreateQuiz = async (
   }
 
   setIsCreating(false);
+  toast.success(<SuccessMessage message={VALIDATION.QUESTION_PUBLISHED} />);
 };
 
 const getFormData = (inputs: any): QuizPayload => {
@@ -34,7 +41,6 @@ const getFormData = (inputs: any): QuizPayload => {
     if (inputs[i].type === 'radio') {
       if (inputs[i].checked)
         answers.push({ answer: inputs[i].value, correct: true });
-
       continue;
     }
 
@@ -100,7 +106,12 @@ const CreateQuestion = () => {
         </Flex>
       ))}
 
-      <Button name="Create" disabled={isCreating} className="md btn-primary" />
+      <Button
+        name="Create"
+        icon="md-checkmark"
+        disabled={isCreating}
+        className="md btn-primary"
+      />
     </form>
   );
 };

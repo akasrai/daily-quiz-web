@@ -5,10 +5,10 @@ import { ROUTE } from './app.route-path';
 import { history } from 'app/app.history';
 import SigninView from 'auth/view/signin.view';
 import PageNotFound from 'ui/layout/404.layout';
-import { ReloadRoute } from 'ui/route/reload-route';
 import { AuthContext } from 'auth/auth.context';
-import DashboardView from 'dashboard/view/dashboard.view';
+import { ReloadRoute } from 'ui/route/reload-route';
 import QuizRoutes from 'daily-quiz/daily-quiz.route';
+import DashboardView from 'dashboard/view/dashboard.view';
 
 const AuthenticatedRoute = (props: any) => {
   const { isAuthenticated } = useContext(AuthContext);

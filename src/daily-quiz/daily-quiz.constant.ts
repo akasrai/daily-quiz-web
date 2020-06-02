@@ -21,4 +21,6 @@ export const category = [
 export const VALIDATION = {
   SOMETING_WENT_WRONG: 'Something went wrong.',
   SEASON_ENDED: 'Season has been ended successfully!',
+  SEASON_HOSTED: 'A new season is hosted successfully',
+  QUESTION_PUBLISHED: 'A new question is published successfully.',
 };

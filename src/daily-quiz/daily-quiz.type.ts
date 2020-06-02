@@ -45,3 +45,23 @@ export interface Top10SeasonStats {
   description: string;
   winners: Winner[];
 }
+
+export interface WinnerStatsProps {
+  winner: Winner;
+  position: number;
+}
+
+export interface CurrentSeasonProps {
+  season: Top10SeasonStats;
+  setSeasonEnded: (prop: boolean) => void;
+}
+
+export interface SeasonPayload {
+  title: string;
+  duration: number;
+  description: string;
+}
+
+export interface CreateSeasonProps {
+  setCreateSeason: (prop: boolean) => void;
+}

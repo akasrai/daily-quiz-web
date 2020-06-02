@@ -19,8 +19,8 @@ const Header = ({ setCreateNewQuiz, createNewQuiz }: HeaderProps) => {
 
   return (
     <Flex className="justify-content-between">
-      <h5 className="col-md-9 p-0 text-muted">
-        {createNewQuiz ? 'New Quiz' : 'Quiz Questions'}
+      <h5 className="col-md-9 p-0 m-0 text-muted">
+        {createNewQuiz ? 'Create New Question' : 'Questions this Season'}
       </h5>
       <Button
         icon={`md-${icon}`}
@@ -32,15 +32,13 @@ const Header = ({ setCreateNewQuiz, createNewQuiz }: HeaderProps) => {
   );
 };
 
-const NewQuiz = () => {
-  return (
-    <Flex className="justify-content-center">
-      <div className="col-md-8">
-        <CreateQuestion />
-      </div>
-    </Flex>
-  );
-};
+const NewQuiz = () => (
+  <Flex className="justify-content-center">
+    <div className="col-md-8">
+      <CreateQuestion />
+    </div>
+  </Flex>
+);
 
 const QuestionView = () => {
   const [createNewQuiz, setCreateNewQuiz] = useState<boolean>(false);
@@ -51,7 +49,7 @@ const QuestionView = () => {
         createNewQuiz={createNewQuiz}
         setCreateNewQuiz={setCreateNewQuiz}
       />
-      <Hr />
+      <Hr className="mt-3" />
       {createNewQuiz && <NewQuiz />}
     </AuthenticatedLayout>
   );
