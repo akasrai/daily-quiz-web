@@ -10,7 +10,7 @@ import { securedLS } from 'helper/local-storage-helper';
 import { Input } from 'ui/form/input';
 import { Button } from 'ui/form/button';
 import { ErrorAlert } from 'ui/alert/inline-alert';
-import Flex from 'ui/layout/component/flex';
+import { FlexRow } from 'ui/layout/component/flex';
 import BubbleBackground from 'ui/layout/bubble-background.layout';
 
 const handleSignIn = async (
@@ -96,12 +96,12 @@ const SigninForm = () => {
 const SigninView = () => {
   return (
     <BubbleBackground className="fixed-height-layout">
-      <Flex className="justify-content-center">
+      <FlexRow className="justify-content-center">
         <div className="col-md-4 p-5 rounded bg-white login-form">
           <h3 className="text-primary ml-md-3 ml-0 mb-3">Welcome back :)</h3>
           <SigninForm />
         </div>
-      </Flex>
+      </FlexRow>
     </BubbleBackground>
   );
 };

@@ -1,8 +1,10 @@
 import React from 'react';
 import { LayoutProps } from '../layout.type';
 
-const Flex = ({ children, className = '' }: LayoutProps) => {
-  return <div className={`d-flex  ${className}`}>{children}</div>;
+export const FlexRow = ({ children, className = '' }: LayoutProps) => {
+  return <div className={`d-flex row m-0 ${className}`}>{children}</div>;
 };
 
-export default Flex;
+export const Flex = ({ children, className = '' }: LayoutProps) => {
+  return <div className={`d-flex ${className}`}>{children}</div>;
+};

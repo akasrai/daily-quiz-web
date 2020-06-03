@@ -7,8 +7,8 @@ import {
   TOTAL_OPTIONS,
 } from 'daily-quiz/daily-quiz.constant';
 import { Button } from 'ui/form/button';
-import Flex from 'ui/layout/component/flex';
 import { createQuiz } from 'api/resource.api';
+import { Flex } from 'ui/layout/component/flex';
 import { SuccessMessage } from 'ui/alert/toast-alert';
 import { InfoAlert, ErrorAlert } from 'ui/alert/inline-alert';
 import { Input, TextArea, RadioButton, Select } from 'ui/form/input';

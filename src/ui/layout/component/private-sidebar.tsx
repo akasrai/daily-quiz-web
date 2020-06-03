@@ -91,7 +91,7 @@ const SubTab = ({ name, icon = 'ios-arrow-forward', route }: TabProps) => {
 const PrivateSidebar = () => {
   return (
     <section className="col-md-3">
-      <div className="col-md-12 ml-2 p-0 pt-3 pb-3 rounded-5 bg-blue text-white sidebar p-sticky">
+      <div className="col-md-12 p-0 pt-3 pb-3 rounded-5 bg-blue text-white sidebar p-sticky">
         <div className="tabs">
           <Tab name="Dashboard" icon="ios-home" route={ROUTE.DASHBOARD} />
           <Tab name="Quiz" icon="ios-help-circle" route="/">

@@ -5,15 +5,11 @@ import React, {
   useContext,
   useReducer,
 } from 'react';
-import Flex from './flex';
+import { FlexRow, Flex } from './flex';
 import * as auth from 'auth/auth.state';
 import { Action } from 'auth/auth.type';
 import { signOut } from 'api/resource.api';
 import { AuthContext } from 'auth/auth.context';
-
-interface NavbarProps {
-  children?: ReactNode;
-}
 
 const getPageName = (): String => {
   return window.location.pathname
@@ -54,7 +50,7 @@ const PrivateNavBar = () => {
 
   return (
     <section className="col-12 p-4 mt-1">
-      <Flex className="justify-content-between text-white">
+      <Flex className="justify-content-between text-white pr-md-3 pl-md-3">
         <div className="col-md-3 p-0">
           <div className="d-flex">
             <i className="icon ion-md-school h3 mr-2 m-0" />
@@ -63,7 +59,7 @@ const PrivateNavBar = () => {
             </span>
           </div>
         </div>
-        <div className="col-md-6 p-0">
+        <div className="col-md-6 p-0 d-none d-md-block">
           <div className="d-flex ">
             <span className="bold lead page-title">{getPageName()}</span>
           </div>
@@ -72,7 +68,8 @@ const PrivateNavBar = () => {
           <div className="d-flex user-tool">
             <i className="icon ion-md-contact h3 mr-2 m-0" />
             <button className="bold p pt-1 user-tool-btn">
-              {user?.name} <i className="icon ion-ios-arrow-down ml-2" />
+              <span className="d-none d-md-inline"> {user?.name} </span>
+              <i className="icon ion-ios-arrow-down ml-2" />
               <div className="dropdown text-muted">
                 <div className="list shake">
                   <i className="icon ion-md-contact mr-2 m-0 d-inline-block" />
@@ -81,7 +78,6 @@ const PrivateNavBar = () => {
 
                 {isHandlingAuth ? (
                   <div className="list shake text-muted">
-                    {' '}
                     <i className="icon ion-md-power mr-2 m-0 d-inline-block" />
                     Signing out...
                   </div>

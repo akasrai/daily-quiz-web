@@ -10,7 +10,7 @@ import {
 import { Button } from 'ui/form/button';
 import { history } from 'app/app.history';
 import { ROUTE } from 'app/app.route-path';
-import Flex from 'ui/layout/component/flex';
+import { FlexRow } from 'ui/layout/component/flex';
 import { endSeason } from 'api/resource.api';
 import Image from 'ui/layout/component/image';
 import { getRomanOf } from 'helper/common-helper';
@@ -36,7 +36,7 @@ const endCurrentSeason = async (
 };
 
 const WinnerStats = ({ winner, position }: WinnerStatsProps) => (
-  <Flex className="justify-content-between pr-4">
+  <FlexRow className="justify-content-between pr-4 pt-3 pt-md-0">
     <Image className="player-image mr-3" src={winner.player.photo} />
     <div className="text-muted small">
       <span className="d-block bold text-primary">{winner.player.name}</span>
@@ -53,7 +53,7 @@ const WinnerStats = ({ winner, position }: WinnerStatsProps) => (
         Game Played:<span className="bold"> {winner.gamePlayed}</span>
       </span>
     </div>
-  </Flex>
+  </FlexRow>
 );
 
 const DateDetail = ({ name, date }: { name: string; date: string }) => (
@@ -65,15 +65,15 @@ const DateDetail = ({ name, date }: { name: string; date: string }) => (
 
 export const SeasonStats = ({ season }: { season: Top10SeasonStats }) => (
   <Fragment>
-    <Flex>
+    <FlexRow>
       <span className="lead mb-3 bold text-muted">
         <span className="small mr-2 text-success">
           Season: {getRomanOf(season.season)},
         </span>
         {season?.title}
       </span>
-    </Flex>
-    <Flex>
+    </FlexRow>
+    <FlexRow>
       <div className="col-md-3 p-0">
         <DateDetail name="Hosted on" date={season.createdAt} />
         <DateDetail name="Ended on" date={season.updatedAt} />
@@ -81,7 +81,7 @@ export const SeasonStats = ({ season }: { season: Top10SeasonStats }) => (
       {season.winners.map((winner: Winner, key: number) => (
         <WinnerStats key={key} position={key + 1} winner={winner} />
       ))}
-    </Flex>
+    </FlexRow>
   </Fragment>
 );
 
@@ -93,7 +93,7 @@ export const CurrentSeason = ({
   const [isEndingSeason, setIsEndingSeason] = useState<boolean>(false);
 
   return (
-    <Flex className="justify-content-between">
+    <FlexRow className="justify-content-between">
       <div>
         <div>
           <span className="small text-success">
@@ -136,6 +136,6 @@ export const CurrentSeason = ({
           onClick={() => setOpen(true)}
         />
       </div>
-    </Flex>
+    </FlexRow>
   );
 };

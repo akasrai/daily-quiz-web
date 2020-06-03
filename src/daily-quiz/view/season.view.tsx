@@ -11,7 +11,7 @@ import {
 } from 'daily-quiz/component/season-stats.component';
 import Hr from 'ui/form/hr';
 import { Button } from 'ui/form/button';
-import Flex from 'ui/layout/component/flex';
+import { FlexRow } from 'ui/layout/component/flex';
 import { ErrorMessage } from 'ui/alert/toast-alert';
 import { getTop10SeasonStats } from 'api/resource.api';
 import AuthenticatedLayout from 'ui/layout/authenticated.layout';
@@ -46,28 +46,28 @@ const Header = ({
   const icon = createSeason ? 'close-circle-outline' : 'add-circle-outline';
 
   return (
-    <Flex className="justify-content-between">
-      <h5 className="col-md-9 p-0 text-muted">
+    <FlexRow className="justify-content-between">
+      <h5 className="col-md-9 p-0 text-muted text-md-left text-center">
         {createSeason ? 'Host new Season' : 'Last 10 Seasons'}
       </h5>
       {!isSeasonActive && (
         <Button
           icon={`md-${icon}`}
-          className={`sm ${btnCSS} col-md-2`}
           name={createSeason ? 'Cancel' : 'New Season'}
           onClick={() => setCreateSeason(!createSeason)}
+          className={`sm ${btnCSS} col-md-2  mt-2 mt-md-0`}
         />
       )}
-    </Flex>
+    </FlexRow>
   );
 };
 
 const NewSeason = ({ setCreateSeason }: CreateSeasonProps) => (
-  <Flex className="justify-content-center">
+  <FlexRow className="justify-content-center">
     <div className="col-md-8">
       <CreateSeason setCreateSeason={setCreateSeason} />
     </div>
-  </Flex>
+  </FlexRow>
 );
 
 const isSeasonActive = (seasonSats: Array<Top10SeasonStats> = []) =>

@@ -204,11 +204,9 @@ img.logo {
     background-image: linear-gradient(to bottom right, #0e3c65, #748abd);
   }
 
-  div {
-    .login-form {
-      margin-top: 120px;
-      box-shadow: 0px 0px 50px #2048738c;
-    }
+  .login-form {
+    margin: 120px 20px 0px 20px;
+    box-shadow: 0px 0px 50px #2048738c;
   }
 }
 
@@ -295,7 +293,12 @@ img.logo {
 }
 
 .sidebar {
-  min-height: 80vh;
+  margin-bottom: 15px;
+
+  @media screen and (min-width: 767px) {
+    margin-bottom: 0;
+    min-height: 80vh;
+  }
 }
 
 .tabs {
