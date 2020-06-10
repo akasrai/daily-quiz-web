@@ -33,7 +33,7 @@ const DashboardView = () => {
       getUser(dispatch);
       setIsUserFetched(true);
     }
-  }, [authState]);
+  }, [authState, isUserFetched, setCurrentUser]);
 
   return (
     <AuthenticatedLayout>

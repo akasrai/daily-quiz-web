@@ -1,11 +1,6 @@
-import React, {
-  useMemo,
-  useState,
-  ReactNode,
-  useContext,
-  useReducer,
-} from 'react';
-import { FlexRow, Flex } from './flex';
+import React, { useMemo, useState, useContext, useReducer } from 'react';
+
+import { Flex } from './flex';
 import * as auth from 'auth/auth.state';
 import { Action } from 'auth/auth.type';
 import { signOut } from 'api/resource.api';

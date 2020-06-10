@@ -5,6 +5,7 @@ import { Button } from 'ui/form/button';
 import { FlexRow } from 'ui/layout/component/flex';
 import AuthenticatedLayout from 'ui/layout/authenticated.layout';
 import CreateQuestion from 'daily-quiz/component/create-question.component';
+import QuestionList from 'daily-quiz/component/season-question.component';
 
 interface HeaderProps {
   createNewQuiz: boolean;
@@ -51,6 +52,7 @@ const QuestionView = () => {
       />
       <Hr className="mt-3" />
       {createNewQuiz && <NewQuiz />}
+      {!createNewQuiz && <QuestionList />}
     </AuthenticatedLayout>
   );
 };

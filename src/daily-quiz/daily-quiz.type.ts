@@ -65,3 +65,16 @@ export interface SeasonPayload {
 export interface CreateSeasonProps {
   setCreateSeason: (prop: boolean) => void;
 }
+
+export interface Answers {
+  answer: string;
+  correct: boolean;
+}
+
+export interface CurrentSeasonQuestion {
+  point: number;
+  question: string;
+  category: string;
+  createdAt: string;
+  answers: Answers[];
+}

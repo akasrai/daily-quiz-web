@@ -40,3 +40,7 @@ export const hostNewSeason = (season: SeasonPayload) => {
 export const endSeason = () => {
   return http.get(`/quiz/end/season`);
 };
+
+export const getAllCurrentSeasonQuestion = () => {
+  return http.get(`/quiz/current/season/questions`);
+};
