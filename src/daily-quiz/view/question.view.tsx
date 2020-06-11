@@ -33,10 +33,10 @@ const Header = ({ setCreateNewQuiz, createNewQuiz }: HeaderProps) => {
   );
 };
 
-const NewQuiz = () => (
+const NewQuiz = ({ closeQuesForm }: { closeQuesForm: () => void }) => (
   <FlexRow className="justify-content-center">
     <div className="col-md-8">
-      <CreateQuestion />
+      <CreateQuestion closeQuesForm={closeQuesForm} />
     </div>
   </FlexRow>
 );
@@ -51,8 +51,10 @@ const QuestionView = () => {
         setCreateNewQuiz={setCreateNewQuiz}
       />
       <Hr className="mt-3" />
-      {createNewQuiz && <NewQuiz />}
       {!createNewQuiz && <CurrentSeasonQuestionList />}
+      {createNewQuiz && (
+        <NewQuiz closeQuesForm={() => setCreateNewQuiz(false)} />
+      )}
     </AuthenticatedLayout>
   );
 };

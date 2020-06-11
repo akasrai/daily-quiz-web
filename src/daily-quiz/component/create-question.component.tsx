@@ -14,11 +14,15 @@ import { InfoAlert, ErrorAlert } from 'ui/alert/inline-alert';
 import { Input, TextArea, RadioButton, Select } from 'ui/form/input';
 import { OptionPayload, QuizPayload } from 'daily-quiz/daily-quiz.type';
 
-const handleCreateQuiz = async (
-  e: any,
-  setError: (error: String) => void,
-  setIsCreating: (prop: boolean) => void
-) => {
+interface CreateQuizProps {
+  e: any;
+  closeQuesForm: () => void;
+  setError: (error: string) => void;
+  setIsCreating: (prop: boolean) => void;
+}
+
+const handleCreateQuiz = async (props: CreateQuizProps) => {
+  const { e, closeQuesForm, setError, setIsCreating } = props;
   e.preventDefault();
   setIsCreating(true);
   const quizPayload: QuizPayload = getFormData(e.target);
@@ -29,6 +33,7 @@ const handleCreateQuiz = async (
     return setError(error.message);
   }
 
+  closeQuesForm();
   setIsCreating(false);
   toast.success(<SuccessMessage message={VALIDATION.QUESTION_PUBLISHED} />);
 };
@@ -60,13 +65,17 @@ const isPresent = (answer: String, answers: Array<OptionPayload>) => {
   return answers.find((option) => option.answer === answer);
 };
 
-const CreateQuestion = () => {
+const CreateQuestion = ({ closeQuesForm }: { closeQuesForm: () => void }) => {
   const [error, setError] = useState<String>('');
   const [isCreating, setIsCreating] = useState<boolean>(false);
   const [options, setOptions] = useState<{ [key: string]: string }>({});
 
   return (
-    <form onSubmit={(e) => handleCreateQuiz(e, setError, setIsCreating)}>
+    <form
+      onSubmit={(e) =>
+        handleCreateQuiz({ e, setError, setIsCreating, closeQuesForm })
+      }
+    >
       <ErrorAlert message={error} />
       <TextArea
         type="text"

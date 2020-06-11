@@ -20,7 +20,10 @@ const getCurrentSeasonQuestion = async (
 const Question = ({ question }: { question: CurrentSeasonQuestion }) => (
   <div className="col-md-12 p-0 row m-0 question">
     <div className="col-md-8 p-0 pr-4 text-muted">
-      <div className="small">{question.createdAt}</div>
+      <div className="small">
+        <i className="icon ion-md-calendar mr-2" />
+        {question.createdAt}
+      </div>
       <div className="bold text-primary">{question.question}</div>
       <div className="d-inline-block p-0 shake mr-4 mt-2">
         <i
@@ -44,13 +47,16 @@ const Question = ({ question }: { question: CurrentSeasonQuestion }) => (
 const Options = ({ options }: { options: Array<Answers> }) => (
   <div className="col-md-12">
     <p className="m-0 text-primary">Options</p>
-    {options.map((option) => (
-      <div>
-        <i className="icon ion-ios-arrow-forward mr-2 text-muted" />
+    {options.map((option, key) => (
+      <div key={key} className="shake">
+        <i
+          className={`icon ion-md-${
+            option.correct
+              ? 'checkmark-circle-outline text-success p'
+              : 'close-circle-outline text-danger p'
+          } mr-2 d-inline-block`}
+        />
         {option.answer}
-        {option.correct && (
-          <i className="icon ion-md-checkmark text-success bold ml-2" />
-        )}
       </div>
     ))}
   </div>
@@ -65,8 +71,8 @@ const CurrentSeasonQuestionList = () => {
 
   return (
     <FlexRow>
-      {questions?.map((question) => (
-        <Question question={question} />
+      {questions?.map((question, key) => (
+        <Question key={key} question={question} />
       ))}
     </FlexRow>
   );

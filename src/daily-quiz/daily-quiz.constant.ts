@@ -20,11 +20,25 @@ export const category = [
     value: 'Music',
     icon: 'musical-note',
   },
+  {
+    name: 'Food and Drinks',
+    value: 'Food and Drinks',
+    icon: 'pizza',
+  },
+  {
+    name: 'Movies and Celebrity',
+    value: 'Movies and Celebrity',
+    icon: 'videocam',
+  },
+  {
+    name: 'Other',
+    value: 'Other',
+    icon: 'code-working',
+  },
 ];
 
-export const getCategoryIcon = (categoryName: string) => {
-  return category.find((obj) => obj.name === categoryName)?.icon || '';
-};
+export const getCategoryIcon = (categoryName: string) =>
+  category.find((obj) => obj.name === categoryName)?.icon || '';
 
 export const VALIDATION = {
   SOMETING_WENT_WRONG: 'Something went wrong.',
