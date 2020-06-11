@@ -1,28 +1,9 @@
-import { toast } from 'react-toastify';
-import React, { useState, Fragment, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import {
-  Winner,
-  Answers,
-  Top10SeasonStats,
-  WinnerStatsProps,
-  CurrentSeasonProps,
-  CurrentSeasonQuestion,
-} from 'daily-quiz/daily-quiz.type';
-import { Button } from 'ui/form/button';
-import { history } from 'app/app.history';
-import { ROUTE } from 'app/app.route-path';
 import { FlexRow } from 'ui/layout/component/flex';
-import { endSeason, getAllCurrentSeasonQuestion } from 'api/resource.api';
-import Image from 'ui/layout/component/image';
-import { getRomanOf } from 'helper/common-helper';
-import { PopupAlert } from 'ui/alert/popup-alert';
-import {
-  VALIDATION,
-  category,
-  getCategoryIcon,
-} from 'daily-quiz/daily-quiz.constant';
-import { ErrorMessage, SuccessMessage } from 'ui/alert/toast-alert';
+import { getAllCurrentSeasonQuestion } from 'api/resource.api';
+import { getCategoryIcon } from 'daily-quiz/daily-quiz.constant';
+import { Answers, CurrentSeasonQuestion } from 'daily-quiz/daily-quiz.type';
 
 const getCurrentSeasonQuestion = async (
   setQuestions: (props: Array<CurrentSeasonQuestion>) => void
@@ -37,37 +18,45 @@ const getCurrentSeasonQuestion = async (
 };
 
 const Question = ({ question }: { question: CurrentSeasonQuestion }) => (
-  <div className="col-md-12 p-0">
-    <div className="col-md-2 d-inline-block p-0 text-muted small">
-      {question.createdAt}
+  <div className="col-md-12 p-0 row m-0 question">
+    <div className="col-md-8 p-0 pr-4 text-muted">
+      <div className="small">{question.createdAt}</div>
+      <div className="bold text-primary">{question.question}</div>
+      <div className="d-inline-block p-0 shake mr-4 mt-2">
+        <i
+          className={`icon ion-md-${getCategoryIcon(
+            question.category
+          )} d-inline-block mr-2`}
+        />
+        {question.category}
+      </div>
+      <div className="d-inline-block shake p-0 mt-2">
+        <i className="icon ion-md-checkmark-circle-outline d-inline-block mr-2" />
+        {question.point}pts
+      </div>
     </div>
-    <div className="col-md-6 d-inline-block p-0 bold">{question.question}</div>
-    <div className="col-md-2 d-inline-block p-0 shake">
-      <i
-        className={`icon ion-md-${getCategoryIcon(
-          question.category
-        )} d-inline-block mr-2`}
-      />
-      {question.category}
+    <div className="col-md-4 p-0">
+      <Options options={question.answers} />
     </div>
-    <div className="col-md-2 d-inline-block p-0">{question.point}pts</div>
   </div>
 );
 
 const Options = ({ options }: { options: Array<Answers> }) => (
   <div className="col-md-12">
-    <FlexRow>
-      {options.map((option) => (
-        <Fragment>
-          <span>{option.answer}</span>
-          <span>{option.correct}</span>
-        </Fragment>
-      ))}
-    </FlexRow>
+    <p className="m-0 text-primary">Options</p>
+    {options.map((option) => (
+      <div>
+        <i className="icon ion-ios-arrow-forward mr-2 text-muted" />
+        {option.answer}
+        {option.correct && (
+          <i className="icon ion-md-checkmark text-success bold ml-2" />
+        )}
+      </div>
+    ))}
   </div>
 );
 
-const QuestionList = () => {
+const CurrentSeasonQuestionList = () => {
   const [questions, setQuestions] = useState<Array<CurrentSeasonQuestion>>();
 
   useEffect(() => {
@@ -77,13 +66,10 @@ const QuestionList = () => {
   return (
     <FlexRow>
       {questions?.map((question) => (
-        <Fragment>
-          <Question question={question} />
-          <Options options={question.answers} />
-        </Fragment>
+        <Question question={question} />
       ))}
     </FlexRow>
   );
 };
 
-export default QuestionList;
+export default CurrentSeasonQuestionList;
