@@ -9,8 +9,10 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install
+            - run: npm run build
             - run: npm test
+            - codecov/upload:
+                file: {{ coverage_report_filepath }}
 workflows:
   build-and-test:
     jobs:
