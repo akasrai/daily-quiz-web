@@ -13,6 +13,7 @@ jobs:
             - run: yarn test
             - run: yarn coverage
             - run: yarn codecov
+            - run: bash <(curl -s https://codecov.io/bash)
 workflows:
   build-and-test:
     jobs:
