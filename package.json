@@ -29,7 +29,9 @@
     "eject": "react-scripts eject",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,js,tsx}'",
     "lint:fix": "tslint --fix -c tslint.json 'src/**/*.{ts,js,tsx}'",
-    "prettify": "prettier --single-quote --write \"src/**/*.{ts,js,json,tsx}\""
+    "prettify": "prettier --single-quote --write \"src/**/*.{ts,js,json,tsx}\"",
+    "coverage": "jest --coverage",
+    "codecov": "./node_modules/.bin/codecov -f coverage/coverage.json"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -55,6 +57,7 @@
   },
   "devDependencies": {
     "@types/react-test-renderer": "^16.9.2",
+    "codecov": "^3.7.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
     "prettier": "^2.0.5",

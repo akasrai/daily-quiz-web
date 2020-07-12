@@ -9,10 +9,10 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install
-            - run: npm test
-            - run: nyc report --reporter=text-lcov > coverage.lcov && codecov
-            - run: bash <(curl -s https://codecov.io/bash)
+            - run: yarn install
+            - run: yarn test
+            - run: yarn coverage
+            - run: yarn codecov
 workflows:
   build-and-test:
     jobs:
