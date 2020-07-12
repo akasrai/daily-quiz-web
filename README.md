@@ -40,4 +40,4 @@ npm start
 
 ---
 
-Developed with React
+Created with React
