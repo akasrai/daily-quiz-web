@@ -9,9 +9,10 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm run build --cov-report xml --cov-report term --cov .
-            - run: npm test --cov-report xml --cov-report term --cov .
-            - run: bash <(curl -s https://codecov.io/bash) -Z
+            - run: npm install
+            - run: npm test
+            - run: nyc report --reporter=text-lcov > coverage.lcov && codecov
+            - run: bash <(curl -s https://codecov.io/bash)
 workflows:
   build-and-test:
     jobs:
