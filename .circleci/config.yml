@@ -9,8 +9,8 @@ jobs:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm run build
-            - run: npm test
+            - run: npm run build --cov-report xml --cov-report term --cov .
+            - run: npm test --cov-report xml --cov-report term --cov .
             - run: bash <(curl -s https://codecov.io/bash) -Z
 workflows:
   build-and-test:
