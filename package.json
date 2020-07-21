@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@types/react-test-renderer": "^16.9.2",
-    "codecov": "^3.7.0",
+    "codecov": "^3.7.1",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
     "prettier": "^2.0.5",
